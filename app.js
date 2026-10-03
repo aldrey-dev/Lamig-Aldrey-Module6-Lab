@@ -174,6 +174,8 @@ if (typeof document !== 'undefined') {
         const f7 = validateCourse();
         const f8 = validateTerms();
 
+        console.log('Validation results:', {f1,f2,f3,f4,f5,f6,f7,f8});
+
         if (!(f1 && f2 && f3 && f4 && f5 && f6 && f7 && f8)) {
             return;
         }
