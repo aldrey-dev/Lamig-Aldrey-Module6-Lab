@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Student Registration</h2>
+        <p class="term-ay">Semester: 1<sup>st</sup> &nbsp;|&nbsp; Academic Year: 2026-2027</p>
+
+        <form id="registrationForm">
+
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+                <span id="fullNameError" class="error" aria-live="polite"></span>
+            </div>
+
+          
+            <div class="form-group">
+                <label for="studentNumber">Student Number:</label>
+                <input type="text" id="studentNumber" name="studentNumber" required>
+                <span id="studentNumberError" class="error" aria-live="polite"></span>
+            </div>
+
+         
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                <span id="emailError" class="error" aria-live="polite"></span>
+            </div>
+
+       
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number:</label>
+                <input type="tel" id="mobileNumber" name="mobileNumber" required>
+                <span id="mobileNumberError" class="error" aria-live="polite"></span>
+            </div>
+
+      
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required aria-describedby="passwordFeedback">
+                <span id="passwordFeedback" class="feedback" aria-live="polite"></span>
+                <span id="passwordError" class="error" aria-live="polite"></span>
+            </div>
+
+       
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span id="confirmPasswordError" class="error" aria-live="polite"></span>
+            </div>
+
+       
+            <div class="form-group">
+                <label for="course">Course:</label>
+                <select id="course" name="course" required>
+                    <option value="">Select your course</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSCS">BSCS</option>
+                </select>
+                <span id="courseError" class="error" aria-live="polite"></span>
+            </div>
+
+           
+            <div class="form-group">
+                <label for="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    I agree to the terms and conditions
+                </label>
+                <span id="termsError" class="error" aria-live="polite"></span>
+            </div>
+
+           
+            <div class="btn-group">
+                <button type="submit" id="registerBtn">Register</button>
+                <button type="reset" id="resetBtn">Reset</button>
+            </div>
+
+    
+            <div id="successMessage" class="success" role="alert"></div>
+            <div id="registrationSummary" class="summary" hidden>
+                <h3>Registration Summary</h3>
+                <p><strong>Full Name:</strong> <span id="summaryName"></span></p>
+                <p><strong>Student Number:</strong> <span id="summaryStudentNumber"></span></p>
+                <p><strong>Email Address:</strong> <span id="summaryEmail"></span></p>
+                <p><strong>Mobile Number:</strong> <span id="summaryMobileNumber"></span></p>
+                <p><strong>Course:</strong> <span id="summaryCourse"></span></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
