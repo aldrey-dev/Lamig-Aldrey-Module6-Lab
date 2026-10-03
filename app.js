@@ -14,7 +14,7 @@ function isValidPassword(value) {
     return true;
 }
 
-if (typeof module !== 'undefined' && module.exports !== 'undefined') {
+if (typeof module !== 'undefined' && module.exports) {
     module.exports = { isValidStudentNumber, isValidPassword };
 }
 
@@ -52,7 +52,8 @@ if (typeof document !== 'undefined') {
         el.setAttribute('aria-invalid', message ? 'true' : 'false');
     }
 
-    function clearAllErrors() {
+    function resetAll() {
+        form.reset();
         [fullNameError, studentNumberError, emailError, mobileNumberError,
          passwordError, confirmPasswordError, courseError, termsError].forEach(el => {
             el.textContent = '';
@@ -151,13 +152,10 @@ if (typeof document !== 'undefined') {
         if (!/[@$!]/.test(v)) checks.push('One of @ $ !');
         if (/\s/.test(v)) checks.push('No whitespace allowed');
 
-        if (checks.length === 0) {
-            passwordFeedback.textContent = '✅ Password meets all requirements.';
-            passwordFeedback.style.color = '#27ae60';
-        } else {
-            passwordFeedback.textContent = '⚠️ ' + checks.join(' | ');
-            passwordFeedback.style.color = '#e74c3c';
-        }
+        passwordFeedback.textContent = checks.length === 0
+            ? '✅ Password meets all requirements.'
+            : '⚠️ ' + checks.join(' | ');
+        passwordFeedback.style.color = checks.length === 0 ? '#27ae60' : '#e74c3c';
     });
 
     fullName.addEventListener('blur', validateFullName);
@@ -176,9 +174,9 @@ if (typeof document !== 'undefined') {
         const f7 = validateCourse();
         const f8 = validateTerms();
 
-        const allValid = f1 && f2 && f3 && f4 && f5 && f6 && f7 && f8;
-
-        if (!allValid) return;
+        if (!(f1 && f2 && f3 && f4 && f5 && f6 && f7 && f8)) {
+            return;
+        }
 
         successMessage.textContent = 'Registration details validated successfully!';
         successMessage.style.display = 'block';
@@ -196,6 +194,6 @@ if (typeof document !== 'undefined') {
     });
 
     form.addEventListener('reset', () => {
-        setTimeout(clearAllErrors, 0);
+        setTimeout(resetAll, 0);
     });
 }
