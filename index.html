@@ -7,58 +7,54 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="page-header">
+        <p>Semester: 1<sup>st</sup> &nbsp;&nbsp; Academic Year: 2026-2027</p>
+    </div>
+
     <div class="container">
         <h2>Student Registration</h2>
-        <p class="term-ay">Semester: 1<sup>st</sup> &nbsp;|&nbsp; Academic Year: 2026-2027</p>
 
         <form id="registrationForm">
-
             <div class="form-group">
-                <label for="fullName">Full Name:</label>
-                <input type="text" id="fullName" name="fullName" required>
+                <label for="fullName">Full name</label>
+                <input type="text" id="fullName" required>
                 <span id="fullNameError" class="error" aria-live="polite"></span>
             </div>
 
-          
             <div class="form-group">
-                <label for="studentNumber">Student Number:</label>
-                <input type="text" id="studentNumber" name="studentNumber" required>
+                <label for="studentNumber">Student number</label>
+                <input type="text" id="studentNumber" required>
                 <span id="studentNumberError" class="error" aria-live="polite"></span>
             </div>
 
-         
             <div class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email">Email address</label>
+                <input type="email" id="email" required>
                 <span id="emailError" class="error" aria-live="polite"></span>
             </div>
 
-       
             <div class="form-group">
-                <label for="mobileNumber">Mobile Number:</label>
-                <input type="tel" id="mobileNumber" name="mobileNumber" required>
+                <label for="mobileNumber">Mobile number</label>
+                <input type="tel" id="mobileNumber" required>
                 <span id="mobileNumberError" class="error" aria-live="polite"></span>
             </div>
 
-      
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required aria-describedby="passwordFeedback">
+                <label for="password">Password</label>
+                <input type="password" id="password" required aria-describedby="passwordFeedback">
                 <span id="passwordFeedback" class="feedback" aria-live="polite"></span>
                 <span id="passwordError" class="error" aria-live="polite"></span>
             </div>
 
-       
             <div class="form-group">
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <label for="confirmPassword">Confirm password</label>
+                <input type="password" id="confirmPassword" required>
                 <span id="confirmPasswordError" class="error" aria-live="polite"></span>
             </div>
 
-       
             <div class="form-group">
-                <label for="course">Course:</label>
-                <select id="course" name="course" required>
+                <label for="course">Course</label>
+                <select id="course" required>
                     <option value="">Select your course</option>
                     <option value="BSIT">BSIT</option>
                     <option value="BSCS">BSCS</option>
@@ -66,29 +62,26 @@
                 <span id="courseError" class="error" aria-live="polite"></span>
             </div>
 
-           
             <div class="form-group">
                 <label for="terms">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    I agree to the terms and conditions
+                    <input type="checkbox" id="terms" required>
+                    Terms agreement
                 </label>
                 <span id="termsError" class="error" aria-live="polite"></span>
             </div>
 
-           
             <div class="btn-group">
                 <button type="submit" id="registerBtn">Register</button>
                 <button type="reset" id="resetBtn">Reset</button>
             </div>
 
-    
             <div id="successMessage" class="success" role="alert"></div>
             <div id="registrationSummary" class="summary" hidden>
                 <h3>Registration Summary</h3>
-                <p><strong>Full Name:</strong> <span id="summaryName"></span></p>
-                <p><strong>Student Number:</strong> <span id="summaryStudentNumber"></span></p>
-                <p><strong>Email Address:</strong> <span id="summaryEmail"></span></p>
-                <p><strong>Mobile Number:</strong> <span id="summaryMobileNumber"></span></p>
+                <p><strong>Full name:</strong> <span id="summaryName"></span></p>
+                <p><strong>Student number:</strong> <span id="summaryStudentNumber"></span></p>
+                <p><strong>Email address:</strong> <span id="summaryEmail"></span></p>
+                <p><strong>Mobile number:</strong> <span id="summaryMobileNumber"></span></p>
                 <p><strong>Course:</strong> <span id="summaryCourse"></span></p>
             </div>
         </form>

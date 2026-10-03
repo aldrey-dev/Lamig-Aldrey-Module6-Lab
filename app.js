@@ -1,8 +1,7 @@
 function isValidStudentNumber(value) {
     if (typeof value !== 'string') return false;
     const trimmed = value.trim();
-    const pattern = /^\d{2}-\d{4}-\d{3}$/;
-    return pattern.test(trimmed);
+    return /^\d{2}-\d{4}-\d{3}$/.test(trimmed);
 }
 
 function isValidPassword(value) {
@@ -15,14 +14,12 @@ function isValidPassword(value) {
     return true;
 }
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports !== 'undefined') {
     module.exports = { isValidStudentNumber, isValidPassword };
 }
 
 if (typeof document !== 'undefined') {
-
     const form = document.getElementById('registrationForm');
-
     const fullName = document.getElementById('fullName');
     const studentNumber = document.getElementById('studentNumber');
     const email = document.getElementById('email');
@@ -44,16 +41,18 @@ if (typeof document !== 'undefined') {
     const passwordFeedback = document.getElementById('passwordFeedback');
     const successMessage = document.getElementById('successMessage');
     const registrationSummary = document.getElementById('registrationSummary');
-
     const summaryName = document.getElementById('summaryName');
     const summaryStudentNumber = document.getElementById('summaryStudentNumber');
     const summaryEmail = document.getElementById('summaryEmail');
     const summaryMobileNumber = document.getElementById('summaryMobileNumber');
     const summaryCourse = document.getElementById('summaryCourse');
 
-    function resetAll() {
-        form.reset();
-s
+    function setError(el, errorEl, message) {
+        errorEl.textContent = message;
+        el.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
+
+    function clearAllErrors() {
         [fullNameError, studentNumberError, emailError, mobileNumberError,
          passwordError, confirmPasswordError, courseError, termsError].forEach(el => {
             el.textContent = '';
@@ -66,11 +65,6 @@ s
          password, confirmPassword, course].forEach(el => {
             el.setAttribute('aria-invalid', 'false');
         });
-    }
-
-    function setError(el, errorEl, message) {
-        errorEl.textContent = message;
-        el.setAttribute('aria-invalid', message ? 'true' : 'false');
     }
 
     function validateFullName() {
@@ -94,8 +88,7 @@ s
 
     function validateEmail() {
         const val = email.value.trim();
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!re.test(val)) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
             setError(email, emailError, 'Enter a valid email address.');
             return false;
         }
@@ -104,9 +97,8 @@ s
     }
 
     function validateMobileNumber() {
-
-        const re = /^(09\d{9}|\+639\d{9})$/;
-        if (!re.test(val)) {
+        const val = mobileNumber.value.trim();
+        if (!/^(09\d{9}|\+639\d{9})$/.test(val)) {
             setError(mobileNumber, mobileNumberError, 'Enter 09 followed by 9 digits or +639 followed by 9 digits.');
             return false;
         }
@@ -115,7 +107,6 @@ s
     }
 
     function validatePassword() {
-        passwordError.textContent = '';
         if (!isValidPassword(password.value)) {
             setError(password, passwordError, '');
             return false;
@@ -170,28 +161,25 @@ s
     });
 
     fullName.addEventListener('blur', validateFullName);
-
     course.addEventListener('change', validateCourse);
     terms.addEventListener('change', validateTerms);
 
     form.addEventListener('submit', e => {
         e.preventDefault();
 
+        const f1 = validateFullName();
+        const f2 = validateStudentNumber();
+        const f3 = validateEmail();
+        const f4 = validateMobileNumber();
+        const f5 = validatePassword();
+        const f6 = validateConfirmPassword();
+        const f7 = validateCourse();
+        const f8 = validateTerms();
 
-        const ok = [
-            validateFullName(),
-            validateStudentNumber(),
-            validateEmail(),
-            validateMobileNumber(),
-            validatePassword(),
-            validateConfirmPassword(),
-            validateCourse(),
-            validateTerms()
-        ].every(Boolean);
+        const allValid = f1 && f2 && f3 && f4 && f5 && f6 && f7 && f8;
 
-        if (!ok) return;
+        if (!allValid) return;
 
-    
         successMessage.textContent = 'Registration details validated successfully!';
         successMessage.style.display = 'block';
 
@@ -203,13 +191,11 @@ s
 
         registrationSummary.hidden = false;
 
-       
         form.reset();
         passwordFeedback.textContent = '';
     });
 
-    form.addEventListener('reset', e => {
-    
-        setTimeout(resetAll, 0);
+    form.addEventListener('reset', () => {
+        setTimeout(clearAllErrors, 0);
     });
 }
