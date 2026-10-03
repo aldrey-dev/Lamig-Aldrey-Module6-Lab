@@ -1,24 +1,18 @@
-.error {
-    color: #e74c3c;
-    font-size: 13px;
-    margin-top: 4px;
-    display: block;
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-.feedback {
-    font-size: 13px;
-    margin-top: 4px;
-    display: block;
+body {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.success {
-    color: #27ae60;
-    font-weight: bold;
-    margin: 18px 0;
-    padding: 10px;
-    background-color: #eafaf1;
-    border-radius: 4px;
-    display: none;
+.header {
+    text-align: right;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 .form-group {
@@ -36,6 +30,17 @@ input, select, button {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 15px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+input[aria-invalid="true"],
+select[aria-invalid="true"] {
+    border-color: #e74c3c;
 }
 
 .btn-group {
@@ -46,12 +51,48 @@ input, select, button {
 
 button {
     flex: 1;
+    border: none;
     cursor: pointer;
+    font-weight: bold;
+}
+
+#registerBtn {
+    background-color: #2980b9;
+    color: white;
+}
+
+#resetBtn {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+}
+
+.feedback {
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+    color: #7f8c8d;
+}
+
+.success {
+    color: #27ae60;
+    font-weight: bold;
+    margin: 18px 0;
+    padding: 10px;
+    background-color: #eafaf1;
+    border-radius: 4px;
+    display: none;
 }
 
 .summary {
     margin-top: 20px;
-    padding: 15px;
+    padding: 18px;
     background-color: #f8f9fa;
     border-radius: 6px;
 }

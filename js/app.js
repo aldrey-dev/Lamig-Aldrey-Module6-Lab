@@ -52,19 +52,16 @@ if (typeof document !== 'undefined') {
         el.setAttribute('aria-invalid', message ? 'true' : 'false');
     }
 
-    function resetAll() {
+    function clearAll() {
         form.reset();
         [fullNameError, studentNumberError, emailError, mobileNumberError,
-         passwordError, confirmPasswordError, courseError, termsError].forEach(el => {
-            el.textContent = '';
-        });
+         passwordError, confirmPasswordError, courseError, termsError].forEach(e => e.textContent = '');
         passwordFeedback.textContent = '';
         successMessage.textContent = '';
         successMessage.style.display = 'none';
         registrationSummary.hidden = true;
-        [fullName, studentNumber, email, mobileNumber,
-         password, confirmPassword, course].forEach(el => {
-            el.setAttribute('aria-invalid', 'false');
+        [fullName, studentNumber, email, mobileNumber, password, confirmPassword, course].forEach(e => {
+            e.setAttribute('aria-invalid', 'false');
         });
     }
 
@@ -174,11 +171,7 @@ if (typeof document !== 'undefined') {
         const f7 = validateCourse();
         const f8 = validateTerms();
 
-        console.log('Validation results:', {f1,f2,f3,f4,f5,f6,f7,f8});
-
-        if (!(f1 && f2 && f3 && f4 && f5 && f6 && f7 && f8)) {
-            return;
-        }
+        if (!(f1 && f2 && f3 && f4 && f5 && f6 && f7 && f8)) return;
 
         successMessage.textContent = 'Registration details validated successfully!';
         successMessage.style.display = 'block';
@@ -195,7 +188,5 @@ if (typeof document !== 'undefined') {
         passwordFeedback.textContent = '';
     });
 
-    form.addEventListener('reset', () => {
-        setTimeout(resetAll, 0);
-    });
+    form.addEventListener('reset', () => setTimeout(clearAll, 0));
 }
